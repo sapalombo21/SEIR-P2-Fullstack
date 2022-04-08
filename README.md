@@ -10,7 +10,7 @@
 ## Link to trello
 [Trello]('https://trello.com/b/4GTeRKv7/project-2#')
 ## ERD
-![ERD]('public/images/Screen Shot 2022-04-08 at 12.42.40 PM.png')
+![ERD](public/images/Screen Shot 2022-04-08 at 12.42.40 PM.png)
 ## Wireframe
 ![wireframe1](public/images/74EF89A1-A90F-47E7-8CDD-29253C499A88.jpeg)
 ![wireframe2](public/images/72080742-B3EA-40E6-BBCC-4DB92924F44B.jpeg)
