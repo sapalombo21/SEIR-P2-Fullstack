@@ -12,10 +12,10 @@
 ## ERD
 ![ERD]('public/images/Screen Shot 2022-04-08 at 12.42.40 PM.png')
 ## Wireframe
-![wireframe1]('public/images/74EF89A1-A90F-47E7-8CDD-29253C499A88.jpeg')
-![wireframe2]('public/images/72080742-B3EA-40E6-BBCC-4DB92924F44B.jpeg')
-![wireframe3]('public/images/B52F1E7E-7654-47B5-9BF8-12AB8AB3A9B3.jpeg')
-![wireframe4]('public/images/BBC307DF-9E98-4EBB-9413-861F64FA3BC8.jpeg')
+![wireframe1](public/images/74EF89A1-A90F-47E7-8CDD-29253C499A88.jpeg)
+![wireframe2](public/images/72080742-B3EA-40E6-BBCC-4DB92924F44B.jpeg)
+![wireframe3](public/images/B52F1E7E-7654-47B5-9BF8-12AB8AB3A9B3.jpeg)
+![wireframe4](public/images/BBC307DF-9E98-4EBB-9413-861F64FA3BC8.jpeg)
 ## Routes
 | HTTP METHOD | URL Endpoint    | Controller Action | Purpose                                                                  |
 |-------------|-----------------|-------------------|--------------------------------------------------------------------------|
