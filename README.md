@@ -8,7 +8,7 @@
 * AAU, I want to upvote/downvote other user reviews, and reply to them.
 * AAU, I want to see a users reviews in their profile.
 ## Link to trello
-[Trello]('https://trello.com/b/4GTeRKv7/project-2#')
+[Trello](https://trello.com/invite/b/4GTeRKv7/2fd075d16375be05be3014c841cdbeba/project-2-games-review-website)
 ## ERD
 ![ERD](https://github.com/sapalombo21/SEIR-P2-Fullstack/blob/main/public/images/Screen%20Shot%202022-04-08%20at%2012.42.40%20PM.png)
 ## Wireframe
