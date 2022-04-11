@@ -8,6 +8,26 @@
 </head>
 <body>
     <h1><%= game.name %> </h1>
+    <img src="<%= thumb %>">
     <h3><%= game.summary %> </h3>
+    <h2>Reviews</h2>
+    <% if (user) { %>
+        <form
+        id="add-review-form"
+        method="POST"
+        action="/games/<%= game.id %>/review">
+        <label>Review:</label>
+        <textarea name="review"></textarea>
+        <label>Rating:</label>
+        <select name="rating">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        <input type="submit" value="Add Review"/>
+    </form>
+    <% } %>
 </body>
 </html>

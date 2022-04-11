@@ -28,12 +28,18 @@ async function searchForGame(req, res) {
   res.render("game/search", { games: response.data });
 }
 
-async function show(req,res){
-    const response = await igdb()
-    .fields(["id", "name", "summary", "cover.url"])
+async function show(req, res) {
+  const response = await igdb()
+    .fields(["id", "name", "summary", "cover"])
     .fields("id,name,summary,cover")
     .where(`id=${req.params.id}`)
     .request("/games");
-    const game = response.data[0];
-    res.render('game/show', {game});
+  const game = response.data[0];
+  const image = await igdb()
+    .fields(["game", "url"])
+    .fields("game,url")
+    .where(`game=${req.params.id}`)
+    .request("/covers");
+  console.log(image.data[0].url);
+  res.render("game/show", { game, thumb: image.data[0].url});
 }

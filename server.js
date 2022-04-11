@@ -8,6 +8,8 @@ const passport = require('passport');
 const methodOverride = require('method-override');
 const indexRoutes = require('./routes/index');
 const gameRoutes = require('./routes/games');
+const reviewRoutes = require('./routes/review');
+
 // load the env consts
 require('dotenv').config();
 
@@ -52,6 +54,7 @@ app.use(function (req, res, next) {
 // mount all routes with appropriate base paths
 app.use('/', indexRoutes);
 app.use('/games', gameRoutes);
+app.use('/', reviewRoutes);
 
 // invalid request, send 404 page
 app.use(function(req, res) {
