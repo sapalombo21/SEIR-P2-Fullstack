@@ -10,4 +10,4 @@ const reviewSchema = mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Game", gameSchema);
+module.exports = mongoose.model("Review", reviewSchema);
