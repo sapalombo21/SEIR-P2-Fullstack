@@ -13,9 +13,8 @@ module.exports = {
   // create
 };
 async function index(req, res) {
-  await Game.find({}).then(function (err, games) {
-    res.render("game/index", { games });
-  });
+  const games = await Game.find({});
+  res.render('game/index', {games});
 }
 
 async function searchForGame(req, res) {
@@ -45,14 +44,15 @@ async function show(req, res) {
     .request("/covers");
   const thumb = image.data[0].url
   const exists = await Game.exists({gameId: req.params.id});
+  const apiId = req.params.id
   if (exists) { // checks if a review has been created essentially since game documents are created when a review is created
       Game.findOne({gameId: req.params.id}).exec((err, game)=> {
           Review.find({game: game._id}).exec((err, reviews)=>{
-            res.render("game/show", {game, thumb, reviews});
+            res.render("game/show", {game, thumb, reviews, apiId});
           });
       });
   } else { // uses the api to show the details instead of the game
-      res.render("game/show", {game, thumb, reviews: []});
+      res.render("game/show", {game, thumb, reviews: [], apiId});
   }
 //   Game.findOne({ gameId: req.params.id }).exec((err, game)=>{
 //     Review.find({ game: game._id}).exec((err, reviews)=>{

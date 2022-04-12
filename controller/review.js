@@ -16,9 +16,9 @@ async function create(req, res) {
     .request("/games");
   const data = response.data[0];
   Game.findOrCreate(
-    { gameId: req.params.id },
-    { name: data.name, summary: data.summary, cover: data.cover },
-    { saveIfFound: false },
+    { gameId: req.params.id }, // find parameter
+    { name: data.name, summary: data.summary, cover: data.cover }, // if creating, set params
+    { saveIfFound: false }, // make sure its findOrCreate not findAndCreate.
     function (err, game) {
       const review = new Review({
         user: req.user,
@@ -28,7 +28,7 @@ async function create(req, res) {
         rating: req.body.rating,
       });
       review.save();
-      res.redirect(`games/${req.params.id}`);
+      res.redirect(`/games/${req.params.id}`);
     }
   );
 }

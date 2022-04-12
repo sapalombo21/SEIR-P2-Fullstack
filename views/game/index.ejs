@@ -9,7 +9,7 @@
 <body>
     <ul>
     <% games.forEach(game => { %>
-        <li><%= game.name %> </li>
+        <li><a href="games/<%= game.gameId %>"><%= game.name %></a></li>
     <% }) %>
 </ul>
 </body>
