@@ -1,33 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GAME DETAILS</title>
-</head>
-<body>
-    <h1><%= game.name %> </h1>
-    <img src="<%= thumb %>">
-    <h3><%= game.summary %> </h3>
+  </head>
+  <body>
+    <h1><%= game.name %></h1>
+    <img src="<%= thumb %>" />
+    <h3><%= game.summary %></h3>
     <h2>Reviews</h2>
     <% if (user) { %>
-        <form
-        id="add-review-form"
-        method="POST"
-        action="/games/<%= game.id %>/review">
-        <label>Review:</label>
-        <textarea name="review"></textarea>
-        <label>Rating:</label>
-        <select name="rating">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-        </select>
-        <input type="submit" value="Add Review"/>
+    <form
+      id="add-review-form"
+      method="POST"
+      action="/games/<%= game.id %>/review"
+    >
+      <label>Review:</label>
+      <textarea name="review"></textarea>
+      <label>Rating:</label>
+      <select name="rating">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+      <input type="submit" value="Add Review" />
     </form>
+    <% } %> <% if (reviews.length) { %>
+    <table>
+      <thead>
+        <tr>
+          <th>User</th>
+          <th>Review</th>
+          <th>Rating</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% reviews.forEach(function(r) { %>
+        <tr>
+          <td><%= r.userName %></td>
+          <td><%= r.review %></td>
+          <td><%= r.rating %></td>
+          <% }); %>
+        </tr>
+      </tbody>
+    </table>
+    <% } else { %>
+    <h5>No Reviews Yet</h5>
     <% } %>
-</body>
+  </body>
 </html>
