@@ -32,7 +32,6 @@ async function create(req, res) {
     }
   );
 }
-
 async function edit(req, res) {
   await Review.findOneAndUpdate({_id: req.params.id}, {review: req.body.review, rating: req.body.rating}, (err, review) => {
     review.save();
