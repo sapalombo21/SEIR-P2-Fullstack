@@ -6,7 +6,7 @@ const client = igdb(
   "6guxdcfrj1yvh8h3xm6w3iidg9zy0r"
 );
 
-module.exports = { create, edit, show };
+module.exports = { create, edit, show, delete: deleteOne };
 
 async function create(req, res) {
   const response = await igdb()
@@ -45,5 +45,11 @@ async function edit(req, res) {
       Game.findById(review.game, (err, game) => {
         res.redirect(`/games/${game.gameId}`);
       }) 
+  });
+}
+
+async function deleteOne(req, res) {
+  await Review.findOneAndDelete({_id: req.params.id}, (err, review) => {
+    res.redirect("/");
   });
 }
