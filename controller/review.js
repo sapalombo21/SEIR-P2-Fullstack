@@ -50,6 +50,8 @@ async function edit(req, res) {
 
 async function deleteOne(req, res) {
   await Review.findOneAndDelete({_id: req.params.id}, (err, review) => {
-    res.redirect("/");
+    Game.findById(review.game, (err, game) => {
+      res.redirect(`/games/${game.gameId}`);
+    })
   });
 }
