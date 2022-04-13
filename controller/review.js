@@ -32,6 +32,12 @@ async function create(req, res) {
     }
   );
 }
+
+async function show(req, res) {
+  await Review.findOne({_id: req.params.id}, (err, review) => {
+    res.render('reviews/edit', {title:"Edit Review", review});
+  })
+}
 async function edit(req, res) {
   await Review.findOneAndUpdate({_id: req.params.id}, {review: req.body.review, rating: req.body.rating}, (err, review) => {
     review.save();
