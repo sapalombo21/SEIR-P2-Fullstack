@@ -14,7 +14,7 @@ module.exports = {
 };
 async function index(req, res) {
   const games = await Game.find({});
-  res.render("game/index", { games, title: "All Games" });
+  res.render("game/index", { games, title: "Reviewed Games" });
 }
 
 // async function blankSearch(req, res) {
