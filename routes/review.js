@@ -5,5 +5,7 @@ const reviewCtrl = require('../controller/review');
 router.post('/games/:id/review', isLoggedIn, reviewCtrl.create);
 router.get('/review/:id/edit', isLoggedIn, reviewCtrl.show);
 router.put('/review/:id', isLoggedIn, reviewCtrl.edit);
+router.delete('/reviews/:id', isLoggedIn, reviewCtrl.delete);
+
 
 module.exports = router;
