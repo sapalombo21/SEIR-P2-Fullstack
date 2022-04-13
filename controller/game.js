@@ -14,7 +14,7 @@ module.exports = {
 };
 async function index(req, res) {
   const games = await Game.find({});
-  res.render("game/index", { games });
+  res.render("game/index", { games, title: "All Games" });
 }
 
 // async function blankSearch(req, res) {
@@ -30,9 +30,9 @@ async function searchForGame(req, res) {
     .where("version_parent=null")
     .request("/games");
   if (req.query.q === undefined) {
-    res.render("game/search", { games: [] });
+    res.render("game/search", { games: [], title:"Search" });
   } else {
-    res.render("game/search", { games: response.data });
+    res.render("game/search", { games: response.data, title:"Search" });
   }
 }
 
@@ -57,12 +57,12 @@ async function show(req, res) {
     // checks if a review has been created essentially since game documents are created when a review is created
     Game.findOne({ gameId: req.params.id }).exec((err, game) => {
       Review.find({ game: game._id }).exec((err, reviews) => {
-        res.render("game/show", { game, thumb, reviews, apiId });
+        res.render("game/show", { game, thumb, reviews, apiId, title:"Details" });
       });
     });
   } else {
     // uses the api to show the details instead of the game
-    res.render("game/show", { game, thumb, reviews: [], apiId });
+    res.render("game/show", { game, thumb, reviews: [], apiId, title:"Details" });
   }
   //   Game.findOne({ gameId: req.params.id }).exec((err, game)=>{
   //     Review.find({ game: game._id}).exec((err, reviews)=>{
