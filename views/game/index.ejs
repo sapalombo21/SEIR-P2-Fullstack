@@ -1,7 +1,7 @@
 <%- include('../partials/header') %> 
-    <ul>
+    <ul class="list-group">
     <% games.forEach(game => { %>
-        <li><a href="games/<%= game.gameId %>"><%= game.name %></a></li>
+        <li class="list-group-item list-group-item-action"><a class="list-group-item-action" href="games/<%= game.gameId %>"><%= game.name %></a></li>
     <% }) %>
 </ul>
 <%- include('../partials/footer') %>

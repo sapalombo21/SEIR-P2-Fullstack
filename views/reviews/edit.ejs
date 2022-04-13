@@ -1,23 +1,26 @@
 <%- include('../partials/header') %>
-<h3>Old Review:</h3>
-<p><%= review.review %></p>
-<h3>Old Rating:</h3>
-<p><%= review.rating %></p>
+<div class="container-fluid">
+  <h3>Old Review:</h3>
+  <p><%= review.review %></p>
+  <h3>Old Rating:</h3>
+  <p><%= review.rating %></p>
+</div>
 <form
+  class="mb-3"
   action="/review/<%= review._id %>?_method=PUT"
   method="POST"
   autocomplete="off"
 >
-  <label>Review:</label>
-  <textarea name="review"></textarea>
-  <label>Rating:</label>
-  <select name="rating">
+  <label class="form-label">Review:</label>
+  <textarea class="form-control" name="review"></textarea>
+  <label class="form-label">Rating:</label>
+  <select class="form-select" name="rating">
     <option value="1">1</option>
     <option value="2">2</option>
     <option value="3">3</option>
     <option value="4">4</option>
     <option value="5">5</option>
   </select>
-  <input type="submit" value="Update Review" />
+  <input class="button" type="submit" value="Update Review" />
 </form>
 <%- include('../partials/footer') %>

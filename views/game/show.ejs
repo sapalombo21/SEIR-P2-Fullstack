@@ -2,29 +2,36 @@
 <h1><%= game.name %></h1>
 <img src="<%= thumb %>" />
 <h3><%= game.summary %></h3>
-<h2>Reviews</h2>
-<% if (user) { %>
-<form id="add-review-form" method="POST" action="/games/<%=apiId%>/review">
-  <label>Review:</label>
-  <textarea name="review"></textarea>
-  <label>Rating:</label>
-  <select name="rating">
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-  </select>
-  <input type="submit" value="Add Review" />
-</form>
+<div class="container-fluid">
+  <h2>Reviews</h2>
+  <% if (user) { %>
+  <form
+    class="mb-3"
+    id="add-review-form"
+    method="POST"
+    action="/games/<%=apiId%>/review"
+  >
+    <label class="form-label">Review:</label>
+    <textarea class="form-control" name="review"></textarea>
+    <label class="form-label">Rating:</label>
+    <select class="form-select" name="rating">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+    <input class="btn btn-dark" type="submit" value="Add Review" />
+  </form>
+</div>
 <% } %> <% if (reviews.length) { %>
-<table>
+<table class="table table-striped table-dark">
   <thead>
     <tr>
-      <th>User</th>
-      <th>Review</th>
-      <th>Rating</th>
-      <th>Edit Review</th>
+      <th scope="col">User</th>
+      <th scope="col">Review</th>
+      <th scope="col">Rating</th>
+      <th scope="col">Edit Review</th>
     </tr>
   </thead>
   <tbody>
@@ -35,8 +42,8 @@
       <td><%= r.rating %></td>
       <td>
         <% if (user && user._id.equals(r.user)) { %>
-         <form action="/review/<%= r._id %>/edit" method="GET">
-          <button type="submit">E</button>
+        <form action="/review/<%= r._id %>/edit" method="GET">
+          <button class="btn" type="submit">E</button>
         </form>
         <% } %>
       </td>

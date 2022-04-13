@@ -9,7 +9,7 @@
   <title><%= title %></title>
 </head>
 <body>
-  <nav class="nav justify-content-center nav-pills">
+  <nav class="nav justify-content-center nav-pills container-fluid bg-dark">
     <a class="nav-link" href="/games" <%- title === 'Reviewed Games' ? 'class="nav-link active"' : 'class="nav-link"' %>>REVIEWED GAMES</a>
     <% if (user) { %>
       <a class="nav-link" href="/games/search"	<%- title === 'Search' ? 'class="nav-link active"' : 'class="nav-link"' %>>
