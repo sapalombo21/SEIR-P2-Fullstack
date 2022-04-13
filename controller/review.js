@@ -6,7 +6,7 @@ const client = igdb(
   "6guxdcfrj1yvh8h3xm6w3iidg9zy0r"
 );
 
-module.exports = { create, edit };
+module.exports = { create, edit, show };
 
 async function create(req, res) {
   const response = await igdb()

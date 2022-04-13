@@ -24,6 +24,7 @@
       <th>User</th>
       <th>Review</th>
       <th>Rating</th>
+      <th>Edit Review</th>
     </tr>
   </thead>
   <tbody>
@@ -32,6 +33,13 @@
       <td><%= r.userName %></td>
       <td><%= r.review %></td>
       <td><%= r.rating %></td>
+      <td>
+        <% if (user && user._id.equals(r.user)) { %>
+         <form action="/review/<%= r._id %>/edit" method="GET">
+          <button type="submit">E</button>
+        </form>
+        <% } %>
+      </td>
       <% }); %>
     </tr>
   </tbody>
