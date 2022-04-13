@@ -3,6 +3,7 @@ const isLoggedIn = require('../config/auth');
 const reviewCtrl = require('../controller/review');
 
 router.post('/games/:id/review', isLoggedIn, reviewCtrl.create);
+router.get('/:id/edit', isLoggedIn, reviewCtrl.show);
 router.put('/:id/edit', isLoggedIn, reviewCtrl.edit);
 
 module.exports = router;
