@@ -31,7 +31,8 @@
       <th scope="col">User</th>
       <th scope="col">Review</th>
       <th scope="col">Rating</th>
-      <th scope="col">Edit Review</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
     </tr>
   </thead>
   <tbody>
@@ -46,6 +47,14 @@
           <button class="btn btn-light" type="submit">E</button>
         </form>
         <% } %>
+      </td>
+      <td>
+        <% if (user && user._id.equals(r.user)) { %>
+          <form action="/review/<%=r._id%>?_method=DELETE" 
+            method="POST">
+          <button class="btn btn-light" type="submit">X</button>
+          </form>
+          <% } %>
       </td>
       <% }); %>
     </tr>
