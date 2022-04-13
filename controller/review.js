@@ -6,7 +6,7 @@ const client = igdb(
   "6guxdcfrj1yvh8h3xm6w3iidg9zy0r"
 );
 
-module.exports = { create };
+module.exports = { create, edit };
 
 async function create(req, res) {
   const response = await igdb()
@@ -31,4 +31,11 @@ async function create(req, res) {
       res.redirect(`/games/${req.params.id}`);
     }
   );
+}
+
+async function edit(req, res) {
+  await Review.findOneAndUpdate({_id: req.params.id}, {review: req.body.review, rating: req.body.rating}, (err, review) => {
+    review.save();
+    res.redirect(`/games/${review.gameId}`);
+  });
 }
