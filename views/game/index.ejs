@@ -1,4 +1,5 @@
 <%- include('../partials/header') %> 
+    <h4>This website uses the IGDB API, you can search for any game in the search page</h4>
     <ul class="list-group">
     <% games.forEach(game => { %>
         <li class="list-group-item list-group-item-action"><a class="list-group-item-action" href="games/<%= game.gameId %>"><%= game.name %></a></li>
