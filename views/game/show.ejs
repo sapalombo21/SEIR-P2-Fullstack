@@ -47,7 +47,7 @@
   <tbody>
     <% reviews.forEach(function(r) { %>
     <tr>
-      <td><%= r.userName %></td>
+      <td><a  href="/users/<%= r.user._id %>"><%= r.userName %></a></td>
       <td><%= r.review %></td>
       <td><%= r.rating %></td>
       <td>
