@@ -10,18 +10,17 @@ module.exports = {
   search: searchForGame,
   show,
   index,
-  // blankSearch
 };
 
 async function getAvg(id) {
-  const reviews = await Review.find({game: id});
+  const reviews = await Review.find({ game: id });
   let score = 0;
   let cnt = 0;
   reviews.forEach((review) => {
     cnt++;
     score += review.rating;
   });
-  let avg = score/cnt;
+  let avg = score / cnt;
   return avg;
 }
 
@@ -43,9 +42,9 @@ async function searchForGame(req, res) {
     .where("version_parent=null")
     .request("/games");
   if (req.query.q === undefined) {
-    res.render("game/search", { games: [], title:"Search" });
+    res.render("game/search", { games: [], title: "Search" });
   } else {
-    res.render("game/search", { games: response.data, title:"Search" });
+    res.render("game/search", { games: response.data, title: "Search" });
   }
 }
 
@@ -68,20 +67,28 @@ async function show(req, res) {
   const apiId = req.params.id;
   if (exists) {
     // checks if a review has been created essentially since game documents are created when a review is created
-    Game.findOne({ gameId: req.params.id }).exec(async(err, game) => {
-      Review.find({ game: game._id }).exec(async(err, reviews) => {
+    Game.findOne({ gameId: req.params.id }).exec(async (err, game) => {
+      Review.find({ game: game._id }).exec(async (err, reviews) => {
         const avg = await getAvg(game._id);
-        res.render("game/show", { game, thumb, reviews, apiId, title:"Details", avg});
+        res.render("game/show", {
+          game,
+          thumb,
+          reviews,
+          apiId,
+          title: "Details",
+          avg,
+        });
       });
     });
   } else {
     // uses the api to show the details instead of the game document
-    res.render("game/show", { game, thumb, reviews: [], apiId, title:"Details", avg: null });
+    res.render("game/show", {
+      game,
+      thumb,
+      reviews: [],
+      apiId,
+      title: "Details",
+      avg: null,
+    });
   }
-  //   Game.findOne({ gameId: req.params.id }).exec((err, game)=>{
-  //     Review.find({ game: game._id}).exec((err, reviews)=>{
-  //         res.render("game/show", { game, thumb: image.data[0].url, reviews });
-  //     });
-  //   });
-  //   console.log(reviews);
 }

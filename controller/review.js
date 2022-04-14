@@ -19,7 +19,7 @@ async function create(req, res) {
     { gameId: req.params.id }, // find parameter
     { name: data.name, summary: data.summary, cover: data.cover }, // if creating, set params
     { saveIfFound: false }, // make sure its findOrCreate not findAndCreate.
-    function (err, game) {
+    async (err, game) => {
       const review = new Review({
         user: req.user,
         game: game._id,
@@ -34,24 +34,28 @@ async function create(req, res) {
 }
 
 async function show(req, res) {
-  await Review.findOne({_id: req.params.id}, (err, review) => {
-    res.render('reviews/edit', {title:"Edit Review", review});
-  })
+  await Review.findOne({ _id: req.params.id }, (err, review) => {
+    res.render("reviews/edit", { title: "Edit Review", review });
+  });
 }
 async function edit(req, res) {
-  await Review.findOneAndUpdate({_id: req.params.id}, {review: req.body.review, rating: req.body.rating}, (err, review) => {
+  await Review.findOneAndUpdate(
+    { _id: req.params.id },
+    { review: req.body.review, rating: req.body.rating },
+    async(err, review) => {
       review.save();
       console.log(review.game);
-      Game.findById(review.game, (err, game) => {
+      Game.findById(review.game, async(err, game) => {
         res.redirect(`/games/${game.gameId}`);
-      }) 
-  });
+      });
+    }
+  );
 }
 
 async function deleteOne(req, res) {
-  await Review.findOneAndDelete({_id: req.params.id}, (err, review) => {
-    Game.findById(review.game, (err, game) => {
+  await Review.findOneAndDelete({ _id: req.params.id }, async(err, review) => {
+    Game.findById(review.game, async(err, game) => {
       res.redirect(`/games/${game.gameId}`);
-    })
+    });
   });
 }
