@@ -12,6 +12,19 @@ module.exports = {
   index,
   // blankSearch
 };
+
+async function getAvg(id) {
+  const reviews = await Review.find({game: id});
+  let score = 0;
+  let cnt = 0;
+  reviews.forEach((review) => {
+    cnt++;
+    score += review.rating;
+  });
+  let avg = score/cnt;
+  return avg;
+}
+
 async function index(req, res) {
   const games = await Game.find({});
   res.render("game/index", { games, title: "Reviewed Games" });
@@ -55,14 +68,15 @@ async function show(req, res) {
   const apiId = req.params.id;
   if (exists) {
     // checks if a review has been created essentially since game documents are created when a review is created
-    Game.findOne({ gameId: req.params.id }).exec((err, game) => {
-      Review.find({ game: game._id }).exec((err, reviews) => {
-        res.render("game/show", { game, thumb, reviews, apiId, title:"Details" });
+    Game.findOne({ gameId: req.params.id }).exec(async(err, game) => {
+      Review.find({ game: game._id }).exec(async(err, reviews) => {
+        const avg = await getAvg(game._id);
+        res.render("game/show", { game, thumb, reviews, apiId, title:"Details", avg});
       });
     });
   } else {
-    // uses the api to show the details instead of the game
-    res.render("game/show", { game, thumb, reviews: [], apiId, title:"Details" });
+    // uses the api to show the details instead of the game document
+    res.render("game/show", { game, thumb, reviews: [], apiId, title:"Details", avg: null });
   }
   //   Game.findOne({ gameId: req.params.id }).exec((err, game)=>{
   //     Review.find({ game: game._id}).exec((err, reviews)=>{
