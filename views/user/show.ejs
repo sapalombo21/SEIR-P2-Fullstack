@@ -1,1 +1,38 @@
-<%- include('../partials/header') %>
+<%- include('../partials/header') %> <% if (reviews.length) { %>
+<table class="table table-striped table-dark">
+  <thead>
+    <tr>
+      <th scope="col">User</th>
+      <th scope="col">Review</th>
+      <th scope="col">Rating</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% reviews.forEach(function(r) { %>
+    <tr>
+      <td><a href="/users/<%= r.user._id %>"><%= r.userName %></a></td>
+      <td><%= r.review %></td>
+      <td><%= r.rating %></td>
+      <td>
+        <% if (user && user._id.equals(r.user)) { %>
+        <form action="/review/<%= r._id %>/edit" method="GET">
+          <button class="btn btn-light" type="submit">E</button>
+        </form>
+        <% } %>
+      </td>
+      <td>
+        <% if (user && user._id.equals(r.user)) { %>
+        <form action="/review/<%=r._id%>?_method=DELETE" method="POST">
+          <button class="btn btn-light" type="submit">X</button>
+        </form>
+        <% } %>
+      </td>
+      <% }); %>
+    </tr>
+  </tbody>
+</table>
+<% } else { %>
+<h5>No Reviews Yet</h5>
+<% } %> <%- include('../partials/footer') %>
