@@ -21,7 +21,7 @@ async function getAvg(id) {
     score += review.rating;
   });
   let avg = score / cnt;
-  return avg;
+  return avg.toFixed(2);
 }
 
 async function index(req, res) {
