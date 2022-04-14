@@ -1,10 +1,14 @@
 <%- include('../partials/header') %>
+<% let cnt = 0; %> 
 <h1><%= game.name %></h1>
 <img src="<%= thumb %>" />
 <h3><%= game.summary %></h3>
 <div class="container-fluid">
   <h2>Reviews</h2>
-  <% if (user) { %>
+  <% reviews.forEach(r => { %>
+  <% if(user._id.equals(r.user)) {cnt++} %> 
+  <% }) %>
+  <% if (user && cnt < 1) { %>
   <form
     class="mb-3"
     id="add-review-form"

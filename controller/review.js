@@ -2,8 +2,8 @@ const Review = require("../models/review");
 const Game = require("../models/game");
 const igdb = require("igdb-api-node").default;
 const client = igdb(
-  "r5ryryuhi97xihutz2ygdrp8hbe1rg",
-  "6guxdcfrj1yvh8h3xm6w3iidg9zy0r"
+  `${process.env.TWITCH_CLIENT_ID}`,
+  `${process.env.TWITCH_APP_ACCESS_TOKEN}`
 );
 
 module.exports = { create, edit, show, delete: deleteOne };
