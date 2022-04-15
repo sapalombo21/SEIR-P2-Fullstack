@@ -1,5 +1,9 @@
 # My Game Reviews Website
 https://my-videogames-review.herokuapp.com/games
+## Website overview
+This website allows the user to search through a database of video games and create reviews for others to see.
+## Screenshots
+![screenshot](public/images/screenshot.png)
 ## Technologies Used
 * Node.js
 * Mongoose
@@ -32,3 +36,7 @@ https://my-videogames-review.herokuapp.com/games
 | PUT         | /games/:id/edit   | reviewCtrl.edit   | Called when a user wants to edit a review for a game.                    |
 | DELETE      | /games/:id        | reviewCtrl.delete | Called when a user wants to delete their review                          |
 | GET         | /user/:id         | userCtrl.show     | Called when user profile is opened, shows the users reviews              |
+## Next Steps
+* Like/Dislikes and ways to sort results
+* Switch to a relational database
+* Comments on reviews
