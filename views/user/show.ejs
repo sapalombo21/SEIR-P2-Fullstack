@@ -16,14 +16,14 @@
       <td><%= r.review %></td>
       <td><%= r.rating %></td>
       <td>
-        <% if (user && user._id.equals(r.user)) { %>
+        <% if (user.equals(theUser)) { %>
         <form action="/review/<%= r._id %>/edit" method="GET">
           <button class="btn btn-light" type="submit">E</button>
         </form>
         <% } %>
       </td>
       <td>
-        <% if (user && user._id.equals(r.user)) { %>
+        <% if (user.equals(theUser)) { %>
         <form action="/review/<%=r._id%>?_method=DELETE" method="POST">
           <button class="btn btn-light" type="submit">X</button>
         </form>
