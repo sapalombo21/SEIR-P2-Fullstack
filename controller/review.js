@@ -38,24 +38,21 @@ async function show(req, res) {
     res.render("reviews/edit", { title: "Edit Review", review });
   });
 }
+
 async function edit(req, res) {
-  await Review.findOneAndUpdate(
+  const review = await Review.findOneAndUpdate(
     { _id: req.params.id },
-    { review: req.body.review, rating: req.body.rating },
-    async(err, review) => {
-      review.save();
-      console.log(review.game);
-      Game.findById(review.game, async(err, game) => {
-        res.redirect(`/games/${game.gameId}`);
-      });
-    }
-  );
+    { review: req.body.review, rating: req.body.rating }
+  )
+    .populate("game")
+    .exec();
+  res.redirect(`/games/${review.game.gameId}`);
+
 }
 
 async function deleteOne(req, res) {
-  await Review.findOneAndDelete({ _id: req.params.id }, async(err, review) => {
-    Game.findById(review.game, async(err, game) => {
-      res.redirect(`/games/${game.gameId}`);
-    });
-  });
+  const review = await Review.findOneAndDelete({ _id: req.params.id })
+    .populate("game")
+    .exec();
+  res.redirect(`/games/${review.game.gameId}`);
 }

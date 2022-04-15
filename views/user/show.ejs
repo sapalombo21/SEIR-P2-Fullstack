@@ -13,7 +13,7 @@
     <% reviews.forEach(function(r) { %>
     <tr>
       <td><%= r.userName %></a></td>
-      <td><%= r.review %></td>
+      <td><a href="/games/<%= r.game.gameId %>"><%= r.review %></a></td>
       <td><%= r.rating %></td>
       <td>
         <% if (user && user._id.equals(r.user)) { %>
