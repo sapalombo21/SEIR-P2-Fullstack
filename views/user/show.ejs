@@ -2,7 +2,7 @@
 <table class="table table-striped table-dark">
   <thead>
     <tr>
-      <th scope="col">User</th>
+      <th scope="col">Game</th>
       <th scope="col">Review</th>
       <th scope="col">Rating</th>
       <th scope="col">Edit</th>
@@ -12,8 +12,8 @@
   <tbody>
     <% reviews.forEach(function(r) { %>
     <tr>
-      <td><%= r.userName %></a></td>
-      <td><a href="/games/<%= r.game.gameId %>"><%= r.review %></a></td>
+      <td><a href="/games/<%= r.game.gameId %>"><%= r.game.name %></a></td>
+      <td><%= r.review %></td>
       <td><%= r.rating %></td>
       <td>
         <% if (user && user._id.equals(r.user)) { %>
